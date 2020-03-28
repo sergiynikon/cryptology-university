@@ -1,19 +1,19 @@
-﻿using Cryptology.Domain.Algorithms;
+﻿using Cryptology.Domain.Ciphers;
 using Xunit;
 
-namespace Cryptology.UnitTests.CaesarEncodeTests
+namespace Cryptology.UnitTests.CaesarCipherTests
 {
-    public class CaesarEncode_Encode
+    public class CaesarCipher_Encrypt
     {
         private readonly CaesarCipher _caesarCipher;
 
-        public CaesarEncode_Encode()
+        public CaesarCipher_Encrypt()
         {
             _caesarCipher = new CaesarCipher();
         }
 
         [Fact]
-        public void Encode_SimpleWord_Encodes()
+        public void Encode_SimpleWord_EncryptsCorrectly()
         {
             var input = "aaa";
             var key = "3";
@@ -34,14 +34,14 @@ namespace Cryptology.UnitTests.CaesarEncodeTests
         [Theory]
         [InlineData("z", 1, "a")]
         [InlineData("X", 4, "B")]
-        public void Encode_LimitValues_EncodesCorrectly(string value, int key, string expected)
+        public void Encode_LimitValues_EncryptsCorrectly(string value, int key, string expected)
         {
             var result = _caesarCipher.Encrypt(value, key.ToString());
             Assert.Equal(expected, result);
         }
 
         [Fact]
-        public void Encode_BigValues_EncodesCorrectly()
+        public void Encode_LimitKeys_EncryptsCorrectly()
         {
             var input = "a";
             var key = "26";

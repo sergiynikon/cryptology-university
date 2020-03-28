@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
+using Cryptology.Domain.Abstract;
 
-namespace Cryptology.Domain.Algorithms
+namespace Cryptology.Domain.Ciphers
 {
     public class CaesarCipher : ICipher
     {
@@ -14,9 +15,9 @@ namespace Cryptology.Domain.Algorithms
             var stringBuilder = new StringBuilder();
             foreach (var character in source)
             {
-                stringBuilder.Append(EncodeChar(character, intKey));
-            } 
-            
+                stringBuilder.Append(EncryptChar(character, intKey));
+            }
+
             return stringBuilder.ToString();
         }
 
@@ -27,13 +28,13 @@ namespace Cryptology.Domain.Algorithms
             var stringBuilder = new StringBuilder();
             foreach (var character in source)
             {
-                stringBuilder.Append(DecodeChar(character, intKey));
+                stringBuilder.Append(DecryptChar(character, intKey));
             }
 
             return stringBuilder.ToString();
         }
 
-        private int ParseIntKey(string key)
+        private static int ParseIntKey(string key)
         {
             try
             {
@@ -46,8 +47,9 @@ namespace Cryptology.Domain.Algorithms
             }
         }
 
-        private char EncodeChar(char source, int key)
+        private static char EncryptChar(char source, int key)
         {
+            // Using Caesar cipher don't encrypt non letter character
             if (!char.IsLetter(source))
             {
                 return source;
@@ -57,10 +59,10 @@ namespace Cryptology.Domain.Algorithms
             return (char)((source + key - minChar) % AlphabetNumber + minChar);
         }
 
-        private char DecodeChar(char source, int key)
+        private static char DecryptChar(char source, int key)
         {
             char minChar = char.IsUpper(source) ? 'A' : 'a';
-            return (char) ((AlphabetNumber + source - key - minChar) % AlphabetNumber + minChar);
+            return (char)((AlphabetNumber + source - key - minChar) % AlphabetNumber + minChar);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cryptology.Domain.Algorithms
+﻿namespace Cryptology.Domain.Abstract
 {
     public interface ICipher
     {

@@ -1,4 +1,6 @@
-﻿namespace Cryptology.Domain.Algorithms
+﻿using Cryptology.Domain.Abstract;
+
+namespace Cryptology.Domain.Ciphers
 {
     public class DefaultCipher : ICipher
     {

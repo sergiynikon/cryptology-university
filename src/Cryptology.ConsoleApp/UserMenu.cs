@@ -1,14 +1,12 @@
-﻿using System;
-using System.Threading.Channels;
-using Cryptology.Domain;
-using Cryptology.Domain.Algorithms;
-using Microsoft.VisualBasic;
+﻿using Cryptology.Domain;
+using Cryptology.Domain.Ciphers;
+using System;
 
 namespace Cryptology.ConsoleApp
 {
     public class UserMenu
     {
-        private readonly Cipher _cipher = new Cipher();
+        private readonly CipherProvider _cipherProvider = new CipherProvider();
 
         public void MainMenu()
         {
@@ -31,12 +29,12 @@ namespace Cryptology.ConsoleApp
                         break;
                     case ConsoleKey.D2:
                         CaptureInput();
-                        result = _cipher.Encode();
+                        result = _cipherProvider.Encode();
                         Console.WriteLine($"Encoded result: {result}");
                         break;
                     case ConsoleKey.D3:
                         CaptureInput();
-                        result = _cipher.Decode();
+                        result = _cipherProvider.Decode();
                         Console.WriteLine($"Decoded result: {result}");
 
                         break;
@@ -59,7 +57,7 @@ namespace Cryptology.ConsoleApp
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.D1:
-                    _cipher.SetCipher(new CaesarCipher());
+                    _cipherProvider.SetCipher(new CaesarCipher());
                     Console.WriteLine("Caesar cipher - set");
                     break;
                 default:
@@ -72,9 +70,9 @@ namespace Cryptology.ConsoleApp
         {
             Console.Clear();
             Console.WriteLine("Enter the string you want to encode/decode and press enter");
-            _cipher.Message = Console.ReadLine();
+            _cipherProvider.Message = Console.ReadLine();
             Console.WriteLine("Enter the key to encode/decode");
-            _cipher.Key = Console.ReadLine();
+            _cipherProvider.Key = Console.ReadLine();
         }
     }
 }

@@ -1,19 +1,18 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using Cryptology.Domain.Algorithms;
+﻿using Cryptology.Domain.Abstract;
 
 namespace Cryptology.Domain
 {
-    public class Cipher
+    public class CipherProvider
     {
         private ICipher _cipher;
         public string Key { get; set; }
         public string Message { get; set; }
 
-        public Cipher()
+        public CipherProvider()
         {
         }
 
-        public Cipher(ICipher cipher)
+        public CipherProvider(ICipher cipher)
         {
             _cipher = cipher;
         }

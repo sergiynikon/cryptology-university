@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Cryptology.ConsoleApp
+﻿namespace Cryptology.ConsoleApp
 {
     class Program
     {

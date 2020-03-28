@@ -22,12 +22,12 @@ namespace Cryptology.Domain
             _cipher = cipher;
         }
 
-        public string Encode()
+        public string Encrypt()
         {
             return _cipher.Encrypt(Message, Key);
         }
 
-        public string Decode()
+        public string Decrypt()
         {
             return _cipher.Decrypt(Message, Key);
         }

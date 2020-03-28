@@ -29,12 +29,12 @@ namespace Cryptology.ConsoleApp
                         break;
                     case ConsoleKey.D2:
                         CaptureInput();
-                        result = _cipherProvider.Encode();
+                        result = _cipherProvider.Encrypt();
                         Console.WriteLine($"Encoded result: {result}");
                         break;
                     case ConsoleKey.D3:
                         CaptureInput();
-                        result = _cipherProvider.Decode();
+                        result = _cipherProvider.Decrypt();
                         Console.WriteLine($"Decoded result: {result}");
 
                         break;

@@ -46,7 +46,14 @@ namespace Cryptology.WPF
 
             _cipherProvider.Key = KeyTextBox.Text;
             _cipherProvider.Message = EncryptTextBox.Text;
-            DecryptTextBox.Text = _cipherProvider.Encrypt();
+            try
+            {
+                DecryptTextBox.Text = _cipherProvider.Encrypt();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             EncryptTextBox.Text = string.Empty;
         }
 
@@ -59,7 +66,14 @@ namespace Cryptology.WPF
 
             _cipherProvider.Key = KeyTextBox.Text;
             _cipherProvider.Message = DecryptTextBox.Text;
-            EncryptTextBox.Text = _cipherProvider.Decrypt();
+            try
+            {
+                EncryptTextBox.Text = _cipherProvider.Decrypt();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             DecryptTextBox.Text = string.Empty;
         }
 

@@ -43,7 +43,7 @@ namespace Cryptology.Domain.Ciphers
             }
             catch (FormatException)
             {
-                throw new FormatException("Cannot convert key to int value!");
+                throw new FormatException($"Cannot convert key '{key}' to int value!");
             }
         }
 
@@ -61,6 +61,7 @@ namespace Cryptology.Domain.Ciphers
 
         private static char DecryptChar(char message, int key)
         {
+            // Using Caesar cipher don't decrypt non letter character
             if (!char.IsLetter(message))
             {
                 return message;

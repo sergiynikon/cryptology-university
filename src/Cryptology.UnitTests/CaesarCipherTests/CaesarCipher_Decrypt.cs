@@ -40,5 +40,14 @@ namespace Cryptology.UnitTests.CaesarCipherTests
             var result = _caesarCipher.Decrypt(message, key);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData("%", 4, "%")]
+        [InlineData(" ", 5, " ")]
+        public void Decrypt_NotLetters_ReturnsSameCharacters(string message, int key, string expected)
+        {
+            var result = _caesarCipher.Decrypt(message, key.ToString());
+            Assert.Equal(expected, result);
+        }
     }
 }

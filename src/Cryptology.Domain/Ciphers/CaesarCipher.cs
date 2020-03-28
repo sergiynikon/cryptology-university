@@ -67,7 +67,7 @@ namespace Cryptology.Domain.Ciphers
             }
 
             char minChar = char.IsUpper(message) ? 'A' : 'a';
-            return (char)((AlphabetNumber + message - key - minChar) % AlphabetNumber + minChar);
+            return (char)((AlphabetNumber + message - (key % AlphabetNumber) - minChar) % AlphabetNumber + minChar);
         }
     }
 }

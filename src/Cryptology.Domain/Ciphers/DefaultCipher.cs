@@ -4,14 +4,14 @@ namespace Cryptology.Domain.Ciphers
 {
     public class DefaultCipher : ICipher
     {
-        public string Encrypt(string source, string key)
+        public string Encrypt(string message, string key)
         {
-            return source;
+            return message;
         }
 
-        public string Decrypt(string source, string key)
+        public string Decrypt(string message, string key)
         {
-            return source;
+            return message;
         }
     }
 }

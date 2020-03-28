@@ -8,12 +8,12 @@ namespace Cryptology.Domain.Ciphers
     {
         const int AlphabetNumber = 26;
 
-        public string Encrypt(string source, string key)
+        public string Encrypt(string message, string key)
         {
             var intKey = ParseIntKey(key);
 
             var stringBuilder = new StringBuilder();
-            foreach (var character in source)
+            foreach (var character in message)
             {
                 stringBuilder.Append(EncryptChar(character, intKey));
             }
@@ -21,12 +21,12 @@ namespace Cryptology.Domain.Ciphers
             return stringBuilder.ToString();
         }
 
-        public string Decrypt(string source, string key)
+        public string Decrypt(string message, string key)
         {
             var intKey = ParseIntKey(key);
 
             var stringBuilder = new StringBuilder();
-            foreach (var character in source)
+            foreach (var character in message)
             {
                 stringBuilder.Append(DecryptChar(character, intKey));
             }

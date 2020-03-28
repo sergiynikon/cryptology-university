@@ -15,29 +15,29 @@ namespace Cryptology.UnitTests.CaesarCipherTests
         [Fact]
         public void Decrypt_SimpleWord_DecryptsCorrectly()
         {
-            var input = "ddd";
+            var message = "ddd";
             var key = "3";
             var expected = "aaa";
-            var result = _caesarCipher.Decrypt(input, key);
+            var result = _caesarCipher.Decrypt(message, key);
             Assert.Equal(expected, result);
         }
 
         [Theory]
         [InlineData("abc", 3, "xyz")]
         [InlineData("a", 1, "z")]
-        public void Decrypt_LimitValues_DecryptsCorrectly(string value, int key, string expected)
+        public void Decrypt_LimitValues_DecryptsCorrectly(string message, int key, string expected)
         {
-            var result = _caesarCipher.Decrypt(value, key.ToString());
+            var result = _caesarCipher.Decrypt(message, key.ToString());
             Assert.Equal(expected, result);
         }
 
         [Fact]
         public void Decrypt_LimitKeys_EncryptsCorrectly()
         {
-            var input = "a";
+            var message = "a";
             var key = "26";
             var expected = "a";
-            var result = _caesarCipher.Decrypt(input, key);
+            var result = _caesarCipher.Decrypt(message, key);
             Assert.Equal(expected, result);
         }
     }

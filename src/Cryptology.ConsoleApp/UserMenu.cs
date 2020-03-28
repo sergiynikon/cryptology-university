@@ -15,7 +15,7 @@ namespace Cryptology.ConsoleApp
                 Console.Clear();
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("0. Exit");
-                Console.WriteLine("1. Set encoder");
+                Console.WriteLine("1. Set encryption provider");
                 Console.WriteLine("2. Encrypt");
                 Console.WriteLine("3. Decrypt");
 
@@ -30,12 +30,12 @@ namespace Cryptology.ConsoleApp
                     case ConsoleKey.D2:
                         CaptureInput();
                         result = _cipherProvider.Encrypt();
-                        Console.WriteLine($"Encoded result: {result}");
+                        Console.WriteLine($"Encrypted result: {result}");
                         break;
                     case ConsoleKey.D3:
                         CaptureInput();
                         result = _cipherProvider.Decrypt();
-                        Console.WriteLine($"Decoded result: {result}");
+                        Console.WriteLine($"Decrypted result: {result}");
 
                         break;
                     default:
@@ -69,9 +69,9 @@ namespace Cryptology.ConsoleApp
         private void CaptureInput()
         {
             Console.Clear();
-            Console.WriteLine("Enter the string you want to encode/decode and press enter");
+            Console.WriteLine("Enter the message you want to encrypt/decrypt and press enter");
             _cipherProvider.Message = Console.ReadLine();
-            Console.WriteLine("Enter the key to encode/decode");
+            Console.WriteLine("Enter the key and press enter");
             _cipherProvider.Key = Console.ReadLine();
         }
     }

@@ -47,28 +47,28 @@ namespace Cryptology.Domain.Ciphers
             }
         }
 
-        private static char EncryptChar(char message, int key)
+        private static char EncryptChar(char character, int key)
         {
             // Using Caesar cipher don't encrypt non letter character
-            if (!char.IsLetter(message))
+            if (!char.IsLetter(character))
             {
-                return message;
+                return character;
             }
 
-            char minChar = char.IsUpper(message) ? 'A' : 'a';
-            return (char)((message + key - minChar) % AlphabetNumber + minChar);
+            char minChar = char.IsUpper(character) ? 'A' : 'a';
+            return (char)((character + key - minChar) % AlphabetNumber + minChar);
         }
 
-        private static char DecryptChar(char message, int key)
+        private static char DecryptChar(char character, int key)
         {
             // Using Caesar cipher don't decrypt non letter character
-            if (!char.IsLetter(message))
+            if (!char.IsLetter(character))
             {
-                return message;
+                return character;
             }
 
-            char minChar = char.IsUpper(message) ? 'A' : 'a';
-            return (char)((AlphabetNumber + message - (key % AlphabetNumber) - minChar) % AlphabetNumber + minChar);
+            char minChar = char.IsUpper(character) ? 'A' : 'a';
+            return (char)((AlphabetNumber + character - (key % AlphabetNumber) - minChar) % AlphabetNumber + minChar);
         }
     }
 }

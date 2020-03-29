@@ -29,9 +29,9 @@ namespace Cryptology.WPF
         public EncryptionWindow()
         {
             InitializeComponent();
-            _cipherProvider = new CipherProvider(new DefaultCipher());
             LoadCipherNames();
-            CipherProviderComboBox.SelectedItem = nameof(DefaultCipher);
+            _cipherProvider = CipherProvider.CreateDefault();
+            CipherProviderComboBox.SelectedItem = CipherProvider.DefaultCipherName;
             CipherProviderComboBox.ItemsSource = CipherProviderNames;
         }
 

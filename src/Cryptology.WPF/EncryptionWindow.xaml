@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cryptology.WPF"
         mc:Ignorable="d"
-        Title="EncryptionWindow" Height="400" Width="500">
+        Title="EncryptionWindow" Height="400" Width="600">
     <Grid Background="#f1f1f1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Row="0">
@@ -35,9 +35,9 @@
         <Grid Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0"
                            Margin="5">
@@ -53,13 +53,14 @@
                             Orientation="Vertical" 
                             VerticalAlignment="Top"
                             Margin="5">
-                    <DockPanel Margin="5">
+                    <DockPanel Margin="0,0,0,15">
                         <Label HorizontalAlignment="Center"
                                DockPanel.Dock="Top">
                             Key
                         </Label>
                         <TextBox x:Name="KeyTextBox"
                                  BorderBrush="Black"
+                                 Margin="5"
                                  Height="75"/>
                     </DockPanel>
                     <Button x:Name="EncryptButton" 

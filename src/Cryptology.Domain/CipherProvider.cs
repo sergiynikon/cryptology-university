@@ -1,4 +1,5 @@
 ﻿using Cryptology.Domain.Abstract;
+using Cryptology.Domain.Ciphers;
 
 namespace Cryptology.Domain
 {
@@ -16,6 +17,13 @@ namespace Cryptology.Domain
         {
             _cipher = cipher;
         }
+
+        public static CipherProvider CreateDefault()
+        {
+            return new CipherProvider(new DefaultCipher());
+        }
+
+        public static string DefaultCipherName => nameof(DefaultCipher);
 
         public void SetCipher(ICipher cipher)
         {

@@ -49,12 +49,12 @@ namespace Cryptology.WPF
             try
             {
                 DecryptTextBox.Text = _cipherProvider.Encrypt();
+                EncryptTextBox.Text = string.Empty;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            EncryptTextBox.Text = string.Empty;
         }
 
         private void DecryptButton_Click(object sender, RoutedEventArgs e)
@@ -69,12 +69,12 @@ namespace Cryptology.WPF
             try
             {
                 EncryptTextBox.Text = _cipherProvider.Decrypt();
+                DecryptTextBox.Text = string.Empty;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            DecryptTextBox.Text = string.Empty;
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

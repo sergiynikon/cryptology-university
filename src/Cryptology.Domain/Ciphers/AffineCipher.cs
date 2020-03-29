@@ -1,12 +1,14 @@
 ﻿using Cryptology.Domain.Abstract;
 using System;
+using System.Linq;
 using System.Text;
 
 namespace Cryptology.Domain.Ciphers
 {
     public class AffineCipher : ICipher
     {
-        const int AlphabetNumber = 26;
+        private const int AlphabetNumber = 26;
+        private static readonly int[] MultiplicativeGroup = GetMultiplicativeGroup(AlphabetNumber);
 
         public string Encrypt(string message, string key)
         {
@@ -43,7 +45,7 @@ namespace Cryptology.Domain.Ciphers
 
             char minChar = char.IsUpper(character) ? 'A' : 'a';
 
-            return (char)((parameters.A * (character - minChar) + parameters.B) % AlphabetNumber + minChar);
+            return (char)((parameters.Alpha * (character - minChar) + parameters.Beta) % AlphabetNumber + minChar);
         }
 
         private static char DecryptChar(char character, AffineParameters parameters)
@@ -55,7 +57,7 @@ namespace Cryptology.Domain.Ciphers
 
             char minChar = char.IsUpper(character) ? 'A' : 'a';
 
-            return (char)((ModInverseNumber(parameters.A) * (AlphabetNumber + character - minChar - parameters.B) % AlphabetNumber) %
+            return (char)((parameters.InverseAlpha * (AlphabetNumber + character - minChar - parameters.Beta) % AlphabetNumber) %
                 AlphabetNumber + minChar);
         }
 
@@ -76,34 +78,73 @@ namespace Cryptology.Domain.Ciphers
         {
             try
             {
-                var parameters = key.Split(", ");
-                if (parameters.Length > 2)
+                var parameters = key.Trim().Split(',', ';');
+                
+                if (parameters.Length != 2)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new ArgumentException("Affine parameters must have two values, split by comma");
+                }
+
+                var alpha = int.Parse(parameters[0]);
+                var beta = int.Parse(parameters[1]);
+                if (!MultiplicativeGroup.Contains(alpha))
+                {
+                    throw new ArgumentException(
+                        $"Alpha must be in multiplicative group (greatest common divisor of alpha and {AlphabetNumber} must be 1)");
+                }
+
+                if (beta > AlphabetNumber)
+                {
+                    throw new ArgumentException($"Beta should be less, that {AlphabetNumber}");
                 }
 
                 var affineParameters = new AffineParameters
                 {
-                    A = int.Parse(parameters[0]),
-                    B = int.Parse(parameters[1])
+                    Alpha = alpha,
+                    InverseAlpha = ModInverseNumber(alpha),
+                    Beta = beta
                 };
+
                 return affineParameters;
             }
             catch (FormatException)
             {
                 throw new FormatException($"Cannot convert key '{key}' to affine parameters!");
             }
-            catch (IndexOutOfRangeException)
-            {
-                throw new FormatException($"Affine parameters must have two numbers, split by comma (for example '3, 5')!");
-            }
         }
 
+        private static int[] GetMultiplicativeGroup(int number)
+        {
+            var rangeOfNumbers = Enumerable.Range(1, number - 1);
+            var multiplicativeGroup = rangeOfNumbers
+                .Where(current => GreatestCommonDivisor(current, number) == 1)
+                .ToArray();
+
+            return multiplicativeGroup;
+        }
+
+        private static int GreatestCommonDivisor(int num1, int num2)
+        {
+            while (num1 != 0 && num2 != 0)
+            {
+                if (num1 > num2)
+                {
+                    num1 %= num2;
+                }
+                else
+                {
+                    num2 %= num1;
+                }
+            }
+
+            return num1 == 0 ? num2 : num1;
+        }
     }
 
     public class AffineParameters
     {
-        public int A { get; set; }
-        public int B { get; set; }
+        public int Alpha { get; set; }
+        public int InverseAlpha { get; set; }
+        public int Beta { get; set; }
     }
 }

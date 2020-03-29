@@ -95,7 +95,7 @@ namespace Cryptology.Domain.Ciphers
 
                 if (beta > AlphabetNumber)
                 {
-                    throw new ArgumentException($"Beta should be less, that {AlphabetNumber}");
+                    throw new ArgumentException($"Beta must be less, that {AlphabetNumber}");
                 }
 
                 var affineParameters = new AffineParameters

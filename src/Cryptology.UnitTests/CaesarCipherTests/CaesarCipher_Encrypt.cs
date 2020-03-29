@@ -13,7 +13,7 @@ namespace Cryptology.UnitTests.CaesarCipherTests
         }
 
         [Fact]
-        public void Encode_SimpleWord_EncryptsCorrectly()
+        public void Encode_SimpleWord_EncryptsCorrectly() //TODO: rename
         {
             var message = "aaa";
             var key = "3";
@@ -25,7 +25,7 @@ namespace Cryptology.UnitTests.CaesarCipherTests
         [Theory]
         [InlineData(" ", 3, " ")]
         [InlineData("%", 1, "%")]
-        public void Encode_NotLetterCharacters_ReturnsSameCharacters(string message, int key, string expected)
+        public void Encode_NotLetterCharacters_ReturnsSameCharacters(string message, int key, string expected) //TODO: rename
         {
             var result = _caesarCipher.Encrypt(message, key.ToString());
             Assert.Equal(expected, result);
@@ -34,14 +34,14 @@ namespace Cryptology.UnitTests.CaesarCipherTests
         [Theory]
         [InlineData("z", 1, "a")]
         [InlineData("X", 4, "B")]
-        public void Encode_LimitValues_EncryptsCorrectly(string message, int key, string expected)
+        public void Encode_LimitValues_EncryptsCorrectly(string message, int key, string expected) //TODO: rename
         {
             var result = _caesarCipher.Encrypt(message, key.ToString());
             Assert.Equal(expected, result);
         }
 
         [Fact]
-        public void Encode_LimitKeys_EncryptsCorrectly()
+        public void Encode_LimitKeys_EncryptsCorrectly() //TODO: rename
         {
             var message = "a";
             var key = "26";

@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using Cryptology.Domain;
 using Cryptology.Domain.Abstract;
 using Cryptology.Domain.Ciphers;
-using Cryptology.WPF.Helpers;
+using Cryptology.WPF.Managers;
 using AppDomain = System.AppDomain;
 
 namespace Cryptology.WPF
@@ -27,8 +27,8 @@ namespace Cryptology.WPF
     public partial class EncryptionWindow : Window
     {
         private readonly CipherProvider _cipherProvider;
-        private readonly FileProvider _decryptedTextFileProvider = new FileProvider();
-        private readonly FileProvider _encryptedTextFileProvider = new FileProvider();
+        private readonly FileManager _decryptedTextFileProvider = new FileManager();
+        private readonly FileManager _encryptedTextFileProvider = new FileManager();
 
         public EncryptionWindow()
         {
@@ -116,13 +116,19 @@ namespace Cryptology.WPF
         private void OpenFileDecryptedTextButton_Click(object sender, RoutedEventArgs e)
         {
             var textFromFile = _decryptedTextFileProvider.GetTextFromFile();
-            DecryptedTextTextBox.Text = textFromFile;
+            if (textFromFile != null)
+            {
+                DecryptedTextTextBox.Text = textFromFile;
+            }
         }
 
         private void OpenFileEncryptedTextButton_Click(object sender, RoutedEventArgs e)
         {
             var textFromFile = _encryptedTextFileProvider.GetTextFromFile();
-            EncryptedTextTextBox.Text = textFromFile;
+            if (textFromFile != null)
+            {
+                EncryptedTextTextBox.Text = textFromFile;
+            }
         }
 
         private void SaveToFileDecryptedTextButton_Click(object sender, RoutedEventArgs e)

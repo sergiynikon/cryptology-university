@@ -1,9 +1,9 @@
-﻿using Microsoft.Win32;
-using System.IO;
+﻿using System.IO;
+using Microsoft.Win32;
 
-namespace Cryptology.WPF.Helpers
+namespace Cryptology.WPF.Managers
 {
-    public class FileProvider
+    public class FileManager
     {
         public string FileName { get; set; }
 
@@ -12,6 +12,10 @@ namespace Cryptology.WPF.Helpers
             if (FileName == null)
             {
                 SetFileName();
+                if (FileName == null)
+                {
+                    return null;
+                }
             }
 
             var fileText = File.ReadAllText(FileName);
@@ -24,6 +28,10 @@ namespace Cryptology.WPF.Helpers
             if (FileName == null)
             {
                 SetFileName();
+                if (FileName == null)
+                {
+                    return;
+                }
             }
 
             File.WriteAllText(FileName, content);

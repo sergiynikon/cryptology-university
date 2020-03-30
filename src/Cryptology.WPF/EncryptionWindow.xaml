@@ -73,7 +73,7 @@
                                 Padding="5"
                                 Width="auto"
                                 Height="auto" Click="SetFileDecryptedTextButton_Click">
-                            Save to file
+                            Set file
                         </Button>
                     </StackPanel>
                     <Border BorderBrush="#555" 
@@ -158,7 +158,7 @@
                                 Padding="5"
                                 Width="auto"
                                 Height="auto" Click="SetFileEncryptedTextButton_Click">
-                            Save to file
+                            Set file
                         </Button>
                     </StackPanel>
                     <Border BorderBrush="#555"

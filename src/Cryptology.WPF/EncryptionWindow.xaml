@@ -5,39 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cryptology.WPF"
         mc:Ignorable="d"
-        Title="EncryptionWindow" Height="400" Width="600">
+        Title="EncryptionWindow" 
+        Height="600" 
+        Width="800"
+        MinHeight="400"
+        MinWidth="700">
     <Grid Background="#f1f1f1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Row="0">
-            <DockPanel Margin="10"
-                       Width="200"
-                       HorizontalAlignment="Left">
+            <StackPanel Margin="10"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom">
                 <Label HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       DockPanel.Dock="Top">
+                       VerticalAlignment="Center">
                     Set cipher provider:
                 </Label>
                 <ComboBox x:Name="CipherProviderComboBox"
                           Height="25"
                           Width="200"
                           HorizontalAlignment="Left"
+                          VerticalAlignment="Bottom"
                           SelectionChanged="CipherProviderComboBox_OnSelectionChanged">
-                    
                 </ComboBox>
-            </DockPanel>
+            </StackPanel>
             <Separator Background="Black" BorderBrush="Black" VerticalAlignment="Bottom"/>
 
         </Grid>
         <Grid Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <DockPanel Grid.Column="0"
                            Margin="5">
@@ -45,9 +49,42 @@
                            DockPanel.Dock="Top">
                         Decrypted text
                     </Label>
-                    <TextBox x:Name="EncryptTextBox" 
-                             Margin="5"
-                             BorderBrush="Black"/>
+                    <StackPanel DockPanel.Dock="Bottom" 
+                                Height="40"
+                                Margin="5"
+                                Orientation="Horizontal">
+                        <Button x:Name="ReadFromFileDecryptedTextButton"
+                                Margin="0,5,5,5"
+                                Padding="5"
+                                Width="auto"
+                                Height="auto"
+                                Click="OpenFileDecryptedTextButton_Click">
+                            Read from file
+                        </Button>
+                        <Button x:Name="SaveToFileDecryptedTextButton"
+                                Margin="5"
+                                Padding="5"
+                                Width="auto"
+                                Height="auto" Click="SaveToFileDecryptedTextButton_Click">
+                            Save to file
+                        </Button>
+                        <Button x:Name="SetFileDecryptedTextButton"
+                                Margin="5"
+                                Padding="5"
+                                Width="auto"
+                                Height="auto" Click="SetFileDecryptedTextButton_Click">
+                            Save to file
+                        </Button>
+                    </StackPanel>
+                    <Border BorderBrush="#555" 
+                            BorderThickness="1">
+                        <ScrollViewer>
+                            <TextBox x:Name="DecryptedTextTextBox" 
+                                     TextWrapping="Wrap"
+                                     BorderBrush="White"
+                                     AcceptsReturn="True"/>
+                        </ScrollViewer>
+                    </Border>
                 </DockPanel>
                 <StackPanel Grid.Column="1" 
                             Orientation="Vertical" 
@@ -58,25 +95,34 @@
                                DockPanel.Dock="Top">
                             Key
                         </Label>
-                        <TextBox x:Name="KeyTextBox"
-                                 BorderBrush="Black"
-                                 Margin="5"
-                                 Height="75"/>
+                        <Border BorderBrush="#555"
+                                BorderThickness="1">
+                            <ScrollViewer BorderBrush="Black">
+                                <TextBox x:Name="KeyTextBox"
+                                         Height="75"
+                                         TextWrapping="Wrap"
+                                         BorderBrush="White"
+                                         AcceptsReturn="True"/>
+                            </ScrollViewer>
+                        </Border>
                     </DockPanel>
                     <Button x:Name="EncryptButton" 
                             Height="30" 
+                            Width="100"
                             Margin="5"
                             Click="EncryptButton_Click">
                         Encrypt
                     </Button>
                     <Button x:Name="DecryptButton" 
                             Height="30" 
+                            Width="100"
                             Margin="5"
                             Click="DecryptButton_Click">
                         Decrypt
                     </Button>
                     <Button x:Name="ClearButton" 
                             Height="30" 
+                            Width="100"
                             Margin="5"
                             Click="ClearButton_Click">
                         Clear
@@ -88,9 +134,42 @@
                            DockPanel.Dock="Top">
                         Encrypted text
                     </Label>
-                    <TextBox x:Name="DecryptTextBox" 
-                             Margin="5" 
-                             BorderBrush="Black"/>
+                    <StackPanel DockPanel.Dock="Bottom" 
+                                Height="40"
+                                Margin="5"
+                                Orientation="Horizontal">
+                        <Button x:Name="ReadFromFileEncryptedTextButton"
+                                Margin="0,5,5,5"
+                                Padding="5"
+                                Width="auto"
+                                Height="auto"
+                                Click="OpenFileEncryptedTextButton_Click">
+                            Read from file
+                        </Button>
+                        <Button x:Name="SaveToFileEncryptedTextButton"
+                                Margin="5"
+                                Padding="5"
+                                Width="auto"
+                                Height="auto" Click="SaveToFileEncryptedTextButton_Click">
+                            Save to file
+                        </Button>
+                        <Button x:Name="SetFileEncryptedTextButton"
+                                Margin="5"
+                                Padding="5"
+                                Width="auto"
+                                Height="auto" Click="SetFileEncryptedTextButton_Click">
+                            Save to file
+                        </Button>
+                    </StackPanel>
+                    <Border BorderBrush="#555"
+                            BorderThickness="1">
+                        <ScrollViewer BorderBrush="Black">
+                            <TextBox x:Name="EncryptedTextTextBox" 
+                                     TextWrapping="Wrap"
+                                     BorderBrush="White"
+                                     AcceptsReturn="True"/>
+                        </ScrollViewer>
+                    </Border>
                 </DockPanel>
             </Grid>
         </Grid>

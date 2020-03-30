@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Cryptology.Domain;
 using Cryptology.Domain.Abstract;
 using Cryptology.Domain.Ciphers;
+using Cryptology.WPF.Helpers;
 using AppDomain = System.AppDomain;
 
 namespace Cryptology.WPF
@@ -26,6 +27,9 @@ namespace Cryptology.WPF
     public partial class EncryptionWindow : Window
     {
         private readonly CipherProvider _cipherProvider;
+        private readonly FileProvider _decryptedTextFileProvider = new FileProvider();
+        private readonly FileProvider _encryptedTextFileProvider = new FileProvider();
+
         public EncryptionWindow()
         {
             InitializeComponent();
@@ -39,17 +43,17 @@ namespace Cryptology.WPF
 
         private void EncryptButton_Click(object sender, RoutedEventArgs e)
         {
-            if (EncryptTextBox.Text == string.Empty)
+            if (DecryptedTextTextBox.Text == string.Empty)
             {
                 return;
             }
 
             _cipherProvider.Key = KeyTextBox.Text;
-            _cipherProvider.Message = EncryptTextBox.Text;
+            _cipherProvider.Message = DecryptedTextTextBox.Text;
             try
             {
-                DecryptTextBox.Text = _cipherProvider.Encrypt();
-                EncryptTextBox.Text = string.Empty;
+                EncryptedTextTextBox.Text = _cipherProvider.Encrypt();
+                DecryptedTextTextBox.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -59,17 +63,17 @@ namespace Cryptology.WPF
 
         private void DecryptButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DecryptTextBox.Text == string.Empty)
+            if (EncryptedTextTextBox.Text == string.Empty)
             {
                 return;
             }
 
             _cipherProvider.Key = KeyTextBox.Text;
-            _cipherProvider.Message = DecryptTextBox.Text;
+            _cipherProvider.Message = EncryptedTextTextBox.Text;
             try
             {
-                EncryptTextBox.Text = _cipherProvider.Decrypt();
-                DecryptTextBox.Text = string.Empty;
+                DecryptedTextTextBox.Text = _cipherProvider.Decrypt();
+                EncryptedTextTextBox.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -79,8 +83,8 @@ namespace Cryptology.WPF
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            EncryptTextBox.Text = string.Empty;
-            DecryptTextBox.Text = string.Empty;
+            DecryptedTextTextBox.Text = string.Empty;
+            EncryptedTextTextBox.Text = string.Empty;
             KeyTextBox.Text = string.Empty;
         }
 
@@ -107,6 +111,42 @@ namespace Cryptology.WPF
             var objectType = Type.GetType(objectToInstantiate);
             var instantiatedObject = Activator.CreateInstance(objectType) as ICipher;
             _cipherProvider.SetCipher(instantiatedObject);
+        }
+
+        private void OpenFileDecryptedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            var textFromFile = _decryptedTextFileProvider.GetTextFromFile();
+            DecryptedTextTextBox.Text = textFromFile;
+        }
+
+        private void OpenFileEncryptedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            var textFromFile = _encryptedTextFileProvider.GetTextFromFile();
+            EncryptedTextTextBox.Text = textFromFile;
+        }
+
+        private void SaveToFileDecryptedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            var textToSave = DecryptedTextTextBox.Text;
+            _decryptedTextFileProvider.SaveTextToFile(textToSave);
+            DecryptedTextTextBox.Text = string.Empty;
+        }
+
+        private void SaveToFileEncryptedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            var textToSave = EncryptedTextTextBox.Text;
+            _encryptedTextFileProvider.SaveTextToFile(textToSave);
+            EncryptedTextTextBox.Text = string.Empty;
+        }
+
+        private void SetFileDecryptedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            _decryptedTextFileProvider.SetFileName();
+        }
+
+        private void SetFileEncryptedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+            _encryptedTextFileProvider.SetFileName();
         }
     }
 }

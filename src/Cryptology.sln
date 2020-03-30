@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptology.Domain", "Crypto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptology.UnitTests", "Cryptology.UnitTests\Cryptology.UnitTests.csproj", "{EECA17D9-95E5-435F-865D-6D275386B0FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptology.ConsoleApp", "Cryptology.ConsoleApp\Cryptology.ConsoleApp.csproj", "{C964BE9D-83D6-4515-9246-A39F649FA671}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptology.WPF", "Cryptology.WPF\Cryptology.WPF.csproj", "{666CD0A5-BFEF-41F3-84A8-18BCEBCFB8DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cryptology.WPF", "Cryptology.WPF\Cryptology.WPF.csproj", "{666CD0A5-BFEF-41F3-84A8-18BCEBCFB8DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{EECA17D9-95E5-435F-865D-6D275386B0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EECA17D9-95E5-435F-865D-6D275386B0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EECA17D9-95E5-435F-865D-6D275386B0FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C964BE9D-83D6-4515-9246-A39F649FA671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C964BE9D-83D6-4515-9246-A39F649FA671}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C964BE9D-83D6-4515-9246-A39F649FA671}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C964BE9D-83D6-4515-9246-A39F649FA671}.Release|Any CPU.Build.0 = Release|Any CPU
 		{666CD0A5-BFEF-41F3-84A8-18BCEBCFB8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{666CD0A5-BFEF-41F3-84A8-18BCEBCFB8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{666CD0A5-BFEF-41F3-84A8-18BCEBCFB8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
